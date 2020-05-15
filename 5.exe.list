@@ -1,0 +1,617 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+5.exe -- emu8086 assembler version: 4.05  
+ 
+[ 15.05.2020  --  20:02:53 ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       .model small
+[   2]        :                                       .stack 100h
+[   3]        :                                       .data
+[   4]        :                                       
+[   5]    0100: 00 00 00 00 00 00 00 00 00 00 00 00   file db 200 dup (?)
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00             
+[   6]    01C8: 00 00 00 00 00 00 00 00 00 00 00 00   file2 db 200 dup (?)
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00             
+[   7]    0290: 00 00 00 00 00 00 00 00 00 00 00 00   file1 db 200 dup (?)
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00             
+[   8]    0358: 00                                    size db    ?
+[   9]    0359: 00                                    flagBeginFile db 0
+[  10]    035A: 00 00 00 00 00 00 00 00 00 00 00 00   buf db 50 dup (?)
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00                               
+[  11]    038C: 00 00                                 handler1 dw 0
+[  12]    038E: 00 00                                 handler2 dw 0
+[  13]    0390: 32 00 00 00 00 00 00 00 00 00 00 00   wordForFind 50,?,50 dup (?)
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00                         
+[  14]    03C4: 65 72 72 6F 72 24 0D 0A               errorMessage db "error$",0Dh,0Ah
+[  15]        :                                       
+[  16]        :                                       .code
+[  17]    03D0:                                       start:
+[  18]        :                                       
+[  19]    03D0: B8 10 00                              mov ax, @data
+[  20]    03D3: 8E C0                                 	mov es, ax 		
+[  21]        :                                       	
+[  22]    03D5: 3E 8A 0E 80 00                        	mov cl, ds:[80h]
+[  23]    03DA: BE 81 00                              	mov si, 81h
+[  24]    03DD: BF 00 00                              	lea di,file
+[  25]    03E0: F3 A4                                 	rep movsb
+[  26]        :                                       	
+[  27]    03E2: 8E D8                                 mov ds,ax
+[  28]    03E4: BE 00 00                              lea si,file
+[  29]        :                                       
+[  30]    03E7:                                       checkSpace1:
+[  31]    03E7: 80 3C 00                              cmp [si],0
+[  32]    03EA: 75 03 E9 34 01                        je errorCommandLine
+[  33]    03EF: 80 3C 20                              cmp [si],' '
+[  34]    03F2: 75 03                                 jne readFile1
+[  35]    03F4: 46                                    inc si
+[  36]    03F5: EB F0                                 jmp checkSpace1
+[  37]        :                                       
+[  38]    03F7:                                       readFile1:
+[  39]        :                                       
+[  40]    03F7: BF 90 01                              lea di,file1
+[  41]        :                                       
+[  42]    03FA:                                       cycleReadNameFile1:
+[  43]        :                                       
+[  44]    03FA: 8A 04                                 mov al,[si]
+[  45]    03FC: 88 05                                 mov [di],al
+[  46]    03FE: 47                                    inc di
+[  47]    03FF: 46                                    inc si
+[  48]        :                                       
+[  49]    0400: 80 3C 00                              cmp [si],0
+[  50]    0403: 75 03 E9 1B 01                        je errorCommandLine
+[  51]    0408: 80 3C 2E                              cmp [si], '.'
+[  52]    040B: 74 1F                                 je readTxt
+[  53]    040D: 80 3C 20                              cmp [si], ' '
+[  54]    0410: 75 E8                                 jne cycleReadNameFile1	
+[  55]        :                                       	
+[  56]    0412:                                       setTXT:
+[  57]    0412: 80 3C 20                              cmp [si], ' '
+[  58]    0415: 74 03 E9 09 01                        jne errorCommandLine
+[  59]    041A: C6 05 2E                              mov [di],'.'
+[  60]    041D: 47                                    inc di
+[  61]    041E: C6 05 74                              mov [di],'t'
+[  62]    0421: 47                                    inc di
+[  63]    0422: C6 05 78                              mov [di],'x'
+[  64]    0425: 47                                    inc di
+[  65]    0426: C6 05 74                              mov [di],'t'
+[  66]    0429: 47                                    inc di
+[  67]    042A: EB 34                                 jmp endReadNameFile1
+[  68]        :                                       
+[  69]    042C:                                       readTXT:
+[  70]        :                                       
+[  71]    042C: 80 3C 2E                              cmp [si],'.'
+[  72]    042F: 74 03 E9 EF 00                        jne errorCommandLine
+[  73]    0434: C6 05 2E                              mov [di],'.'
+[  74]    0437: 47                                    inc di
+[  75]    0438: 46                                    inc si
+[  76]    0439: 80 3C 74                              cmp [si],'t'
+[  77]    043C: 74 03 E9 E2 00                        jne errorCommandLine
+[  78]        :                                       
+[  79]    0441: C6 05 74                              mov [di],'t'
+[  80]    0444: 47                                    inc di
+[  81]    0445: 46                                    inc si
+[  82]    0446: 80 3C 78                              cmp [si],'x'
+[  83]    0449: 74 03 E9 D5 00                        jne errorCommandLine
+[  84]        :                                       
+[  85]    044E: C6 05 78                              mov [di],'x'
+[  86]    0451: 47                                    inc di
+[  87]    0452: 46                                    inc si
+[  88]    0453: 80 3C 74                              cmp [si],'t'
+[  89]    0456: 74 03 E9 C8 00                        jne errorCommandLine
+[  90]        :                                       
+[  91]    045B: C6 05 74                              mov [di],'t'
+[  92]    045E: 47                                    inc di
+[  93]    045F: 46                                    inc si
+[  94]        :                                       
+[  95]    0460:                                       endReadNameFile1:
+[  96]        :                                       
+[  97]    0460: C6 05 00                              mov  byte ptr [di],0
+[  98]        :                                       
+[  99]    0463:                                       checkSpace2:
+[ 100]    0463: 80 3C 00                              	cmp [si],0
+[ 101]    0466: 75 03 E9 B8 00                        je errorCommandLine
+[ 102]    046B: 80 3C 20                              cmp [si],' '
+[ 103]    046E: 75 03                                 jne readNameFile2
+[ 104]    0470: 46                                    inc si
+[ 105]    0471: EB F0                                 jmp checkSpace2
+[ 106]        :                                       
+[ 107]    0473:                                       readNameFile2:
+[ 108]        :                                       	
+[ 109]    0473: BF C8 00                              lea di,file2
+[ 110]        :                                       
+[ 111]    0476:                                       cycleReadNameFile2:
+[ 112]        :                                       
+[ 113]    0476: 8A 04                                 mov al,[si]
+[ 114]    0478: 88 05                                 mov [di],al
+[ 115]        :                                       
+[ 116]    047A: 47                                    inc di
+[ 117]    047B: 46                                    inc si
+[ 118]    047C: 80 3C 00                              cmp [si],0
+[ 119]    047F: 75 03 E9 9F 00                        je errorCommandLine
+[ 120]    0484: 80 3C 2E                              cmp [si], '.'
+[ 121]    0487: 74 1F                                 je readTxt2
+[ 122]    0489: 80 3C 20                              cmp [si], ' '
+[ 123]    048C: 75 E8                                 jne cycleReadNameFile2	
+[ 124]        :                                       	
+[ 125]    048E:                                       setTXT2:
+[ 126]        :                                       
+[ 127]    048E: 80 3C 20                              cmp [si], ' '
+[ 128]    0491: 74 03 E9 8D 00                        jne errorCommandLine
+[ 129]    0496: C6 05 2E                              mov [di],'.'
+[ 130]    0499: 47                                    inc di
+[ 131]    049A: C6 05 74                              mov [di],'t'
+[ 132]    049D: 47                                    inc di
+[ 133]    049E: C6 05 78                              mov [di],'x'
+[ 134]    04A1: 47                                    inc di
+[ 135]    04A2: C6 05 74                              mov [di],'t'
+[ 136]    04A5: 47                                    inc di
+[ 137]    04A6: EB 34                                 jmp endReadNameFile2
+[ 138]        :                                       
+[ 139]    04A8:                                       readTXT2:
+[ 140]        :                                       
+[ 141]    04A8: 80 3C 2E                              cmp [si],'.'
+[ 142]    04AB: 75 76                                 jne errorCommandLine
+[ 143]        :                                       
+[ 144]    04AD: C6 05 2E                              mov [di],'.'
+[ 145]    04B0: 47                                    inc di
+[ 146]    04B1: 46                                    inc si
+[ 147]    04B2: FE 0E 58 02                           dec size
+[ 148]        :                                       
+[ 149]    04B6: 80 3C 74                              cmp [si],'t'
+[ 150]    04B9: 75 68                                 jne errorCommandLine
+[ 151]        :                                       
+[ 152]    04BB: C6 05 74                              mov [di],'t'
+[ 153]    04BE: 47                                    inc di
+[ 154]    04BF: 46                                    inc si
+[ 155]    04C0: FE 0E 58 02                           dec size
+[ 156]        :                                       
+[ 157]    04C4: 80 3C 78                              cmp [si],'x'
+[ 158]    04C7: 75 5A                                 jne errorCommandLine
+[ 159]        :                                       
+[ 160]    04C9: C6 05 78                              mov [di],'x'
+[ 161]    04CC: 47                                    inc di
+[ 162]    04CD: 46                                    inc si
+[ 163]    04CE: FE 0E 58 02                           dec size
+[ 164]        :                                       
+[ 165]    04D2: 80 3C 74                              cmp [si],'t'
+[ 166]    04D5: 75 4C                                 jne errorCommandLine
+[ 167]        :                                       
+[ 168]    04D7: C6 05 74                              mov [di],'t'
+[ 169]    04DA: 47                                    inc di
+[ 170]    04DB: 46                                    inc si
+[ 171]        :                                       
+[ 172]    04DC:                                       endReadNameFile2:
+[ 173]        :                                       
+[ 174]    04DC: C6 05 00                              	mov  byte ptr [di],0
+[ 175]        :                                       
+[ 176]    04DF:                                       checkSpace3:
+[ 177]        :                                       
+[ 178]    04DF: 80 3C 00                              cmp [si],0
+[ 179]    04E2: 74 3F                                 je errorCommandLine
+[ 180]        :                                       
+[ 181]    04E4: 80 3C 20                              cmp [si],' '
+[ 182]    04E7: 75 03                                 jne readWord
+[ 183]    04E9: 46                                    inc si
+[ 184]    04EA: EB F3                                 jmp checkSpace3
+[ 185]        :                                       
+[ 186]    04EC:                                       readWord:
+[ 187]        :                                       
+[ 188]    04EC: BF 90 02                              lea di,wordForFind
+[ 189]    04EF: 83 C7 02                              add di,2
+[ 190]    04F2: 8A 04                                 mov al,[si]
+[ 191]    04F4: 88 05                                 mov [di],al
+[ 192]    04F6: 46                                    inc si
+[ 193]    04F7: 47                                    inc di
+[ 194]    04F8: 80 06 91 02 01                        add wordForFind[1],1
+[ 195]        :                                       
+[ 196]    04FD:                                       cycleReadWord:
+[ 197]        :                                       
+[ 198]    04FD: 8A 04                                 mov al,[si]
+[ 199]    04FF: 80 3C 20                              cmp [si],' '
+[ 200]    0502: 74 10                                 je nextCheckCommandLine
+[ 201]        :                                       
+[ 202]    0504: 80 3C 00                              cmp [si],0
+[ 203]    0507: 74 0B                                 je nextCheckCommandLine
+[ 204]        :                                       
+[ 205]    0509: 88 05                                 mov [di],al
+[ 206]    050B: 80 06 91 02 01                        add wordForFind[1],1
+[ 207]        :                                       
+[ 208]    0510: 46                                    inc si
+[ 209]    0511: 47                                    inc di
+[ 210]    0512: EB E9                                 jmp cycleReadWord
+[ 211]        :                                       
+[ 212]        :                                       
+[ 213]    0514:                                       nextCheckCommandLine:
+[ 214]        :                                       
+[ 215]    0514: 80 3C 20                              cmp [si],' '
+[ 216]    0517: 74 07                                 je nextSymbolCheckCommandLine
+[ 217]        :                                       
+[ 218]    0519: 80 3C 00                              cmp [si],0
+[ 219]    051C: 74 0F                                 je openFiles
+[ 220]    051E: EB 03                                 jmp errorCommandLine
+[ 221]        :                                       
+[ 222]    0520:                                       nextSymbolCheckCommandLine:
+[ 223]    0520: 46                                    inc si
+[ 224]    0521: EB F1                                 jmp nextCheckCommandLine
+[ 225]        :                                       
+[ 226]    0523:                                       errorCommandLine:
+[ 227]        :                                       
+[ 228]    0523: BA C4 02                              lea dx,errorMessage
+[ 229]    0526: B4 09                                 mov ah,9
+[ 230]    0528: CD 21                                 int 21h
+[ 231]    052A: E9 10 02                              jmp exitFromProgramm
+[ 232]        :                                       
+[ 233]    052D:                                       openFiles:
+[ 234]        :                                       
+[ 235]    052D: B4 3D                                 	mov ah, 3Dh			
+[ 236]    052F: B0 00                                 	mov al, 00		
+[ 237]    0531: B1 01                                 	mov cl,01h	
+[ 238]    0533: BA 90 01                              	mov dx, offset file1        	
+[ 239]    0536: CD 21                                 	int 21h
+[ 240]        :                                       	
+[ 241]    0538: 72 E9                                 	jc errorCommandLine
+[ 242]    053A: A3 8C 02                              	mov handler1,ax
+[ 243]        :                                       	
+[ 244]    053D: B4 3D                                 mov ah, 3Dh			
+[ 245]    053F: B0 02                                 	mov al, 02h	
+[ 246]    0541: B1 00                                 	mov cl,0h			
+[ 247]    0543: BA C8 00                              	mov dx, offset file2         	
+[ 248]    0546: CD 21                                 	int 21h
+[ 249]        :                                       	
+[ 250]    0548: 72 D9                                 	jc errorCommandLine
+[ 251]    054A: A3 8E 02                              	mov handler2,ax
+[ 252]        :                                       
+[ 253]    054D: 33 FF                                 xor di,di
+[ 254]    054F: BA 5A 02                              	lea dx,buf
+[ 255]    0552: B4 3F                                 	mov ah,3Fh
+[ 256]    0554: 8B 1E 8C 02                           mov bx,handler1
+[ 257]    0558: B9 01 00                              mov cx,1
+[ 258]    055B: CD 21                                 int 21h
+[ 259]        :                                       
+[ 260]    055D: 8A 85 5A 02                           mov al,buf[di]
+[ 261]    0561: 3C 0D                                 cmp al,0Dh
+[ 262]    0563: 74 12                                 je setBeginFlag
+[ 263]        :                                       
+[ 264]    0565: B4 42                                 	mov ah,42h
+[ 265]    0567: 8B 1E 8C 02                           mov bx,handler1
+[ 266]    056B: B0 00                                 mov al,0
+[ 267]    056D: B9 00 00                              mov cx,0
+[ 268]    0570: BA 00 00                              mov dx,0
+[ 269]    0573: CD 21                                 int 21h
+[ 270]    0575: EB 08                                 jmp find
+[ 271]        :                                       
+[ 272]    0577:                                       setBeginFlag:
+[ 273]        :                                       
+[ 274]    0577: C6 06 59 02 01                        mov flagBeginFile,1
+[ 275]    057C: E9 72 01                              jmp exitFromOutputInFile2
+[ 276]        :                                       
+[ 277]    057F:                                       find:
+[ 278]        :                                       
+[ 279]    057F: BA 5A 02                              lea dx,buf
+[ 280]    0582: BE 90 02                              lea si,wordForFind
+[ 281]    0585: 83 C6 02                              add si,2
+[ 282]        :                                       
+[ 283]    0588: B4 3F                                 mov ah,3Fh
+[ 284]    058A: 8B 1E 8C 02                           mov bx,handler1
+[ 285]    058E: B9 01 00                              mov cx,1
+[ 286]    0591: CD 21                                 int 21h
+[ 287]        :                                       
+[ 288]    0593: 3C 00                                 cmp al,0
+[ 289]    0595: 75 03 E9 DA 00                        je output
+[ 290]        :                                       
+[ 291]    059A: 80 BD 5A 02 0A                        cmp buf[di],0Ah
+[ 292]    059F: 74 DE                                 je find
+[ 293]        :                                       
+[ 294]    05A1: 80 BD 5A 02 0D                        cmp buf[di],0Dh
+[ 295]    05A6: 75 03 E9 C9 00                        je output
+[ 296]        :                                       
+[ 297]    05AB: 80 BD 5A 02 20                        cmp buf[di],' '
+[ 298]    05B0: 74 CD                                 je find
+[ 299]        :                                       
+[ 300]    05B2: 8A 85 5A 02                           mov al,buf[di]
+[ 301]    05B6: 3A 04                                 cmp al,[si]
+[ 302]    05B8: 75 77                                 jne  missWord
+[ 303]    05BA: 74 02                                 je findWord
+[ 304]        :                                       
+[ 305]    05BC: EB C1                                 jmp find
+[ 306]        :                                       
+[ 307]    05BE:                                       findWord:
+[ 308]        :                                       
+[ 309]    05BE: 46                                    inc si
+[ 310]    05BF: 8A 0E 91 02                           mov cl,wordForFind[1]
+[ 311]    05C3: FE C9                                 dec cl
+[ 312]        :                                       
+[ 313]    05C5:                                       cycleFindWord:
+[ 314]    05C5: 51                                    push cx
+[ 315]    05C6: BA 5A 02                              lea dx,buf
+[ 316]    05C9: B4 3F                                 mov ah,3Fh
+[ 317]    05CB: 8B 1E 8C 02                           mov bx,handler1
+[ 318]    05CF: B9 01 00                              mov cx,1
+[ 319]    05D2: CD 21                                 int 21h
+[ 320]    05D4: 59                                    pop cx
+[ 321]        :                                       
+[ 322]    05D5: 80 F9 00                              cmp cl,0
+[ 323]    05D8: 7F 17                                 jg ifSizeNo0
+[ 324]        :                                       
+[ 325]    05DA: 3C 00                                 cmp al,0
+[ 326]    05DC: 75 03 E9 3E 01                        je exit
+[ 327]        :                                       
+[ 328]    05E1: 80 BD 5A 02 20                        cmp buf[di],' '
+[ 329]    05E6: 74 6B                                 je moveNewLine
+[ 330]        :                                       
+[ 331]    05E8: 80 BD 5A 02 0D                        cmp buf[di],0Dh
+[ 332]    05ED: 74 90                                 je find
+[ 333]        :                                       
+[ 334]    05EF: EB 40                                 jmp missWord
+[ 335]    05F1:                                       ifSizeNo0:
+[ 336]        :                                       
+[ 337]    05F1: 3C 00                                 cmp al,0
+[ 338]    05F3: 74 7F                                 je output
+[ 339]        :                                       
+[ 340]    05F5: 8A 85 5A 02                           mov al,buf[di]
+[ 341]        :                                       
+[ 342]    05F9: 3C 0D                                 cmp al,0Dh
+[ 343]    05FB: 74 77                                 je output
+[ 344]        :                                       
+[ 345]    05FD: 3C 20                                 cmp al,' '
+[ 346]    05FF: 75 03 E9 7B FF                        je find
+[ 347]        :                                       
+[ 348]    0604: 3A 04                                 cmp al,[si]
+[ 349]    0606: 75 29                                 jne missWord
+[ 350]        :                                       
+[ 351]    0608: 46                                    inc si
+[ 352]        :                                       
+[ 353]    0609: E2 BA                                 loop cycleFindWord
+[ 354]        :                                       
+[ 355]    060B: B4 3F                                 mov ah,3Fh
+[ 356]    060D: 8B 1E 8C 02                           mov bx,handler1
+[ 357]    0611: B9 01 00                              mov cx,1
+[ 358]    0614: CD 21                                 int 21h
+[ 359]        :                                       
+[ 360]    0616: 3C 00                                 cmp al,0
+[ 361]    0618: 75 03 E9 02 01                        je exit
+[ 362]        :                                       
+[ 363]    061D: 8A 85 5A 02                           mov al,buf[di]
+[ 364]        :                                       
+[ 365]    0621: 3C 0D                                 cmp al,0Dh
+[ 366]    0623: 75 03 E9 57 FF                        je find
+[ 367]        :                                       
+[ 368]    0628: 3C 20                                 cmp al,' '
+[ 369]    062A: 74 03 E9 50 FF                        jne find
+[ 370]    062F: 74 22                                 je moveNewLine
+[ 371]        :                                       
+[ 372]    0631:                                       missWord:
+[ 373]        :                                       
+[ 374]    0631: B4 3F                                 mov ah,3Fh
+[ 375]    0633: 8B 1E 8C 02                           mov bx,handler1
+[ 376]    0637: B9 01 00                              mov cx,1
+[ 377]    063A: CD 21                                 int 21h
+[ 378]        :                                       
+[ 379]    063C: 80 BD 5A 02 20                        cmp buf[di],' '
+[ 380]    0641: 75 03 E9 39 FF                        je find
+[ 381]        :                                       
+[ 382]    0646: 80 BD 5A 02 0D                        cmp buf[di],0Dh
+[ 383]    064B: 74 27                                 je output
+[ 384]        :                                       
+[ 385]    064D: 3C 00                                 cmp al,0
+[ 386]    064F: 74 23                                 je output
+[ 387]        :                                       
+[ 388]    0651: EB DE                                 jmp missWord
+[ 389]        :                                       
+[ 390]    0653:                                       moveNewLine:
+[ 391]        :                                       
+[ 392]    0653: B4 3F                                 mov ah,3Fh
+[ 393]    0655: 8B 1E 8C 02                           mov bx,handler1
+[ 394]    0659: B9 01 00                              mov cx,1
+[ 395]    065C: CD 21                                 int 21h
+[ 396]        :                                       
+[ 397]    065E: 3C 00                                 cmp al,0
+[ 398]    0660: 75 03 E9 BA 00                        je exit
+[ 399]        :                                       
+[ 400]    0665: 80 BD 5A 02 0D                        cmp buf[di],0Dh
+[ 401]    066A: 75 E7                                 jne moveNewLine
+[ 402]        :                                       
+[ 403]    066C: C6 06 59 02 01                        mov flagBeginFile,1
+[ 404]    0671: E9 0B FF                              jmp find
+[ 405]        :                                       
+[ 406]    0674:                                       output:
+[ 407]    0674: 80 3E 59 02 01                        cmp flagBeginFile,1
+[ 408]    0679: 74 17                                 je outputNoFirstStrings
+[ 409]        :                                       
+[ 410]    067B: B4 42                                 mov ah,42h
+[ 411]    067D: B0 00                                 mov al,0
+[ 412]    067F: 8B 1E 8C 02                           mov bx,handler1
+[ 413]    0683: B9 00 00                              mov cx,0
+[ 414]    0686: BA 00 00                              mov dx,0
+[ 415]    0689: CD 21                                 int 21h
+[ 416]    068B: C6 06 59 02 01                        mov flagBeginFile,1
+[ 417]    0690: EB 2F                                 jmp outInFile2
+[ 418]    0692:                                       outputNoFirstStrings:
+[ 419]        :                                       
+[ 420]    0692: 33 FF                                 xor di,di
+[ 421]    0694: 33 C9                                 xor cx,cx
+[ 422]    0696: B4 42                                 mov ah,42h
+[ 423]    0698: B0 01                                 mov al,1
+[ 424]    069A: 8B 1E 8C 02                           mov bx,handler1
+[ 425]    069E: B9 FF FF                              mov cx,-1
+[ 426]    06A1: BA FE FF                              mov dx,-2
+[ 427]    06A4: CD 21                                 int 21h
+[ 428]        :                                       
+[ 429]    06A6: BA 5A 02                              lea dx,buf
+[ 430]    06A9: B4 3F                                 mov ah,3Fh
+[ 431]    06AB: B9 01 00                              mov cx,1
+[ 432]    06AE: 8B 1E 8C 02                           mov bx,handler1
+[ 433]    06B2: CD 21                                 int 21h
+[ 434]        :                                       
+[ 435]    06B4: 8A 85 5A 02                           mov al,buf[di]
+[ 436]        :                                       
+[ 437]    06B8: 80 BD 5A 02 0A                        cmp buf[di],0Ah
+[ 438]    06BD: 74 02                                 je outInFile2
+[ 439]        :                                       
+[ 440]    06BF: EB D1                                 jmp outputNoFirstStrings
+[ 441]        :                                       
+[ 442]    06C1:                                       outInFile2:
+[ 443]        :                                       
+[ 444]    06C1: C6 06 59 02 01                        mov flagBeginFile,1
+[ 445]    06C6: B4 3F                                 mov ah,3Fh
+[ 446]    06C8: B9 01 00                              mov cx,1
+[ 447]    06CB: 8B 1E 8C 02                           mov bx,handler1
+[ 448]    06CF: BA 5A 02                              lea dx,buf
+[ 449]    06D2: CD 21                                 int 21h
+[ 450]        :                                       
+[ 451]    06D4: 3C 00                                 cmp al,0
+[ 452]    06D6: 74 47                                 je exit
+[ 453]        :                                       
+[ 454]    06D8: 80 BD 5A 02 0D                        cmp buf[di],0Dh
+[ 455]    06DD: 74 12                                 je exitFromOutputInFile2
+[ 456]        :                                       
+[ 457]    06DF: BA 5A 02                              lea dx,buf
+[ 458]    06E2: 32 C0                                 xor al,al	
+[ 459]    06E4: B4 40                                 mov ah,40h
+[ 460]    06E6: B9 01 00                              mov cx,1
+[ 461]    06E9: 8B 1E 8E 02                           mov bx,handler2
+[ 462]    06ED: CD 21                                 int 21h
+[ 463]        :                                       
+[ 464]    06EF: EB D0                                 jmp outInFile2
+[ 465]        :                                       
+[ 466]    06F1:                                       exitFromOutputInFile2:
+[ 467]    06F1: BA 5A 02                              lea dx,buf
+[ 468]    06F4: C6 85 5A 02 0D                        mov buf[di],0Dh
+[ 469]    06F9: B4 40                                 mov ah,40h
+[ 470]    06FB: B9 01 00                              mov cx,1
+[ 471]    06FE: 8B 1E 8E 02                           mov bx,handler2
+[ 472]    0702: CD 21                                 int 21h
+[ 473]        :                                       
+[ 474]    0704: BA 5A 02                              lea dx,buf
+[ 475]    0707: C6 85 5A 02 0A                        mov buf[di],0Ah
+[ 476]    070C: B4 40                                 mov ah,40h
+[ 477]    070E: B9 01 00                              mov cx,1
+[ 478]    0711: 8B 1E 8E 02                           mov bx,handler2
+[ 479]    0715: CD 21                                 int 21h
+[ 480]        :                                       
+[ 481]    0717: C6 06 59 02 01                        mov flagBeginFile,1
+[ 482]        :                                       
+[ 483]    071C: E9 60 FE                              jmp find
+[ 484]        :                                       
+[ 485]    071F:                                       exit:
+[ 486]    071F: 83 3E 8C 02 00                        cmp handler1,0
+[ 487]    0724: 74 08                                 je closeFile2
+[ 488]        :                                       
+[ 489]    0726: B4 3E                                 mov ah,3Eh
+[ 490]    0728: 8B 1E 8C 02                           mov bx,handler1
+[ 491]    072C: CD 21                                 int 21h
+[ 492]        :                                       
+[ 493]    072E:                                       closeFile2:
+[ 494]    072E: 83 3E 8E 02 00                        cmp handler2,0
+[ 495]    0733: 74 08                                 je exitFromProgramm
+[ 496]        :                                       
+[ 497]    0735: B4 3E                                 mov ah,3Eh
+[ 498]    0737: 8B 1E 8E 02                           mov bx,handler2
+[ 499]    073B: CD 21                                 int 21h
+[ 500]    073D:                                       exitFromProgramm:
+[ 501]        :                                       
+[ 502]    073D: B8 00 4C                              mov ax,4C00h
+[ 503]    0740: CD 21                                 int 21h
+[ 504]        :                                       
+[ 505]        :                                       end start
+[ 506]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 42      -   bytes on last page (l.byte)
+0003: 01      -   bytes on last page (h.byte)
+0004: 05      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: FC      -   check sum (l.byte)
+0013: B0      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 3D      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 3D      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================

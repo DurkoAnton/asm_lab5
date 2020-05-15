@@ -1,0 +1,55 @@
+< THE SYMBOL TABLE >  5.exe  --  emu8086 assembler version: 4.05 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+STACK                    	00000     	-5        	SEGMENT   	(ITSELF)  
+DATA                     	00010     	-5        	SEGMENT   	(ITSELF)  
+FILE                     	00000     	1         	VAR       	data      
+FILE2                    	000C8     	1         	VAR       	data      
+FILE1                    	00190     	1         	VAR       	data      
+SIZE                     	00258     	1         	VAR       	data      
+FLAGBEGINFILE            	00259     	1         	VAR       	data      
+BUF                      	0025A     	1         	VAR       	data      
+HANDLER1                 	0028C     	2         	VAR       	data      
+HANDLER2                 	0028E     	2         	VAR       	data      
+WORDFORFIND              	00290     	1         	VAR       	data      
+ERRORMESSAGE             	002C4     	1         	VAR       	data      
+CODE                     	0003D     	-5        	SEGMENT   	(ITSELF)  
+START                    	00000     	-1        	LABEL     	code      
+CHECKSPACE1              	00017     	-1        	LABEL     	code      
+READFILE1                	00027     	-1        	LABEL     	code      
+CYCLEREADNAMEFILE1       	0002A     	-1        	LABEL     	code      
+SETTXT                   	00042     	-1        	LABEL     	code      
+READTXT                  	0005C     	-1        	LABEL     	code      
+ENDREADNAMEFILE1         	00090     	-1        	LABEL     	code      
+CHECKSPACE2              	00093     	-1        	LABEL     	code      
+READNAMEFILE2            	000A3     	-1        	LABEL     	code      
+CYCLEREADNAMEFILE2       	000A6     	-1        	LABEL     	code      
+SETTXT2                  	000BE     	-1        	LABEL     	code      
+READTXT2                 	000D8     	-1        	LABEL     	code      
+ENDREADNAMEFILE2         	0010C     	-1        	LABEL     	code      
+CHECKSPACE3              	0010F     	-1        	LABEL     	code      
+READWORD                 	0011C     	-1        	LABEL     	code      
+CYCLEREADWORD            	0012D     	-1        	LABEL     	code      
+NEXTCHECKCOMMANDLINE     	00144     	-1        	LABEL     	code      
+NEXTSYMBOLCHECKCOMMANDLINE	00150     	-1        	LABEL     	code      
+ERRORCOMMANDLINE         	00153     	-1        	LABEL     	code      
+OPENFILES                	0015D     	-1        	LABEL     	code      
+SETBEGINFLAG             	001A7     	-1        	LABEL     	code      
+FIND                     	001AF     	-1        	LABEL     	code      
+FINDWORD                 	001EE     	-1        	LABEL     	code      
+CYCLEFINDWORD            	001F5     	-1        	LABEL     	code      
+IFSIZENO0                	00221     	-1        	LABEL     	code      
+MISSWORD                 	00261     	-1        	LABEL     	code      
+MOVENEWLINE              	00283     	-1        	LABEL     	code      
+OUTPUT                   	002A4     	-1        	LABEL     	code      
+OUTPUTNOFIRSTSTRINGS     	002C2     	-1        	LABEL     	code      
+OUTINFILE2               	002F1     	-1        	LABEL     	code      
+EXITFROMOUTPUTINFILE2    	00321     	-1        	LABEL     	code      
+EXIT                     	0034F     	-1        	LABEL     	code      
+CLOSEFILE2               	0035E     	-1        	LABEL     	code      
+EXITFROMPROGRAMM         	0036D     	-1        	LABEL     	code      
+===================================================================================================
+[ 15.05.2020  --  20:02:53 ] 
+< END >
+ 
